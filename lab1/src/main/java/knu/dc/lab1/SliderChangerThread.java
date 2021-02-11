@@ -1,4 +1,4 @@
-package knu.dc.lab1.taskA;
+package knu.dc.lab1;
 
 import javax.swing.*;
 public class SliderChangerThread extends Thread {
@@ -9,6 +9,15 @@ public class SliderChangerThread extends Thread {
     public SliderChangerThread(int changer, JSlider slider) {
         this.changer = changer;
         this.slider = slider;
+        setPriority(Thread.NORM_PRIORITY);
+        setDaemon(true);
+    }
+
+    public SliderChangerThread(int changer, JSlider slider, int priority) {
+        this.changer = changer;
+        this.slider = slider;
+        setPriority(priority);
+        setDaemon(true);
     }
 
     public void incPriority() {
@@ -23,7 +32,7 @@ public class SliderChangerThread extends Thread {
 
     @Override
     public void run() {
-        while (!Thread.currentThread().isInterrupted()) {
+        while (!Thread.interrupted()) {
             moveSlider();
         }
     }
@@ -32,11 +41,10 @@ public class SliderChangerThread extends Thread {
         synchronized (slider) {
             slider.setValue(slider.getValue() + changer);
             try {
-                Thread.sleep(30);
+                sleep(50);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
-
         }
     }
 
