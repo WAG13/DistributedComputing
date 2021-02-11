@@ -32,12 +32,10 @@ public class SliderChangerThread extends Thread {
 
     @Override
     public void run() {
-        while (!Thread.interrupted()) {
-            moveSlider();
-        }
+        while (!Thread.interrupted()) moveSlider();
     }
 
-    private void moveSlider()  {
+    protected void moveSlider()  {
         synchronized (slider) {
             slider.setValue(slider.getValue() + changer);
             try {
