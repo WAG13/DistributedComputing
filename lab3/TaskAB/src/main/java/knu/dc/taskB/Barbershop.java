@@ -1,12 +1,15 @@
 package knu.dc.taskB;
 import java.util.concurrent.*;
 
-public class SleepingBarber extends Thread {
+import static java.lang.Thread.sleep;
+
+public class Barbershop{
 
     public static Semaphore customers = new Semaphore(0);
     public static Semaphore barber = new Semaphore(0);
     public static Semaphore accessSeats = new Semaphore(1);
 
+    public static final int customersNumber = 10;
     public static final int CHAIRS = 5;
     public static int numberOfFreeSeats = CHAIRS;
 
@@ -78,15 +81,10 @@ public class SleepingBarber extends Thread {
 
     public static void main(String[] args) {
 
-        SleepingBarber barberShop = new SleepingBarber();
-        barberShop.start();
-    }
-
-    public void run(){
         Barber barber = new Barber();
         barber.start();
 
-        for (int i=0; i<10; i++) {
+        for (int i=0; i<customersNumber; i++) {
             Customer newCustomer = new Customer(i);
             newCustomer.start();
             try {
@@ -94,4 +92,5 @@ public class SleepingBarber extends Thread {
             } catch(InterruptedException ignored) {};
         }
     }
+
 }
