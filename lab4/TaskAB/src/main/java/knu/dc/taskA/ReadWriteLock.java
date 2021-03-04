@@ -32,8 +32,7 @@ public class ReadWriteLock {
     public synchronized void unlockRead() {
         Thread callingThread = Thread.currentThread();
         if (!isReader(callingThread)) {
-            throw new IllegalMonitorStateException("Calling Thread does not" +
-                    " hold a read lock on this ReadWriteLock");
+            throw new IllegalMonitorStateException("Calling Thread does not hold a read lock on this ReadWriteLock");
         }
         int accessCount = getReadAccessCount(callingThread);
         if (accessCount == 1) {
@@ -65,8 +64,7 @@ public class ReadWriteLock {
 
     public synchronized void unlockWrite() throws InterruptedException {
         if (!isWriter(Thread.currentThread())) {
-            throw new IllegalMonitorStateException("Calling Thread does not" +
-                    " hold the write lock on this ReadWriteLock");
+            throw new IllegalMonitorStateException("Calling Thread does not hold the write lock on this ReadWriteLock");
         }
         writeAccesses--;
         if (writeAccesses == 0) {

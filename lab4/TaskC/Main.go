@@ -8,7 +8,6 @@ import (
 	"time"
 )
 
-
 var seed = rand.NewSource(time.Now().UnixNano())
 var random = rand.New(seed)
 
@@ -65,7 +64,7 @@ func randomizeCity(j*journeysT) string {
 func randomizeName() string {
 	var name bytes.Buffer
 
-	for i := 1; i <= 8; i++ {
+	for i := 1; i <= 5; i++ {
 		name.WriteString(nameGen[random.Intn(len(nameGen))])
 	}
 
@@ -206,36 +205,36 @@ func changeTicketPrice(j*journeysT) {
 	}
 }
 
-func changeJourneys(j*journeysT) {
+func changeJourneys(journeys*journeysT) {
 	for {
-		j.Lock()
+		journeys.Lock()
 
-		from := randomizeCity(j)
+		from := randomizeCity(journeys)
 		time.Sleep(10 * time.Millisecond)
-		to := randomizeCity(j)
+		to := randomizeCity(journeys)
 
 		if from == to {
-			j.Unlock()
+			journeys.Unlock()
 			continue
 		}
 
 		if random.Intn(10) > 4 {
 			//add
 			price := random.Intn(9) + 1
-			addPath(j, getCityByName(j, from), getCityByName(j, to), price)
+			addPath(journeys, getCityByName(journeys, from), getCityByName(journeys, to), price)
 			fmt.Printf("Add Journey from %s to %s: \n price: %d \n\n", from, to, price)
 		} else {
 			//remove
-			prices := getPrices(j, getCityByName(j, from), getCityByName(j, to))
+			prices := getPrices(journeys, getCityByName(journeys, from), getCityByName(journeys, to))
 			if len(prices) == 0 {
-				j.Unlock()
+				journeys.Unlock()
 				continue
 			}
 			price := prices[random.Intn(len(prices))]
-			removePath(j, getCityByName(j, from), getCityByName(j, to), price)
+			removePath(journeys, getCityByName(journeys, from), getCityByName(journeys, to), price)
 			fmt.Printf("Remove Journey from %s to %s: \n price: %d \n\n", from, to, price)
 		}
-		j.Unlock()
+		journeys.Unlock()
 
 		time.Sleep(500 * time.Millisecond)
 	}
@@ -261,19 +260,19 @@ func changeCities(j*journeysT) {
 
 func checkJourney(j*journeysT) {
 	for {
-		j.Lock()
+		j.RLock()
 
 		from := randomizeCity(j)
 		to := randomizeCity(j)
 		if from == to {
-			j.Unlock()
+			j.RUnlock()
 			continue
 		}
 		path, sum := findPath(j, from, to)
 
 		fmt.Printf("Check Journey from %s to %s: \n sum: %d \n path: %v \n\n", from, to, sum, path)
 
-		j.Unlock()
+		j.RUnlock()
 
 		time.Sleep(2000 * time.Millisecond)
 	}
@@ -291,14 +290,11 @@ func main() {
 	addCity(j, "C")
 	addCity(j, "D")
 
-	addPath(j, getCityByName(j, "A"), getCityByName(j, "B"), 10)
 	addPath(j, getCityByName(j, "A"), getCityByName(j, "B"), 5)
 	addPath(j, getCityByName(j, "B"), getCityByName(j, "C"), 10)
 	addPath(j, getCityByName(j, "C"), getCityByName(j, "D"), 10)
 	addPath(j, getCityByName(j, "D"), getCityByName(j, "A"), 5)
 	addPath(j, getCityByName(j, "C"), getCityByName(j, "A"), 8)
-
-	fmt.Printf("j: %+v\n", j)
 
 	go changeCities(j)
 	go changeJourneys(j)
