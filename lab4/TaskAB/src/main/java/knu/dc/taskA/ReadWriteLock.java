@@ -55,6 +55,14 @@ public class ReadWriteLock {
         writingThread = callingThread;
     }
 
+    private boolean canGrantWriteAccess(Thread callingThread) {
+        if (isOnlyReader(callingThread)) return true;
+        if (hasReaders()) return false;
+        if (writingThread == null) return true;
+        if (!isWriter(callingThread)) return false;
+        return true;
+    }
+
     public synchronized void unlockWrite() throws InterruptedException {
         if (!isWriter(Thread.currentThread())) {
             throw new IllegalMonitorStateException("Calling Thread does not" +
@@ -67,18 +75,10 @@ public class ReadWriteLock {
         notifyAll();
     }
 
-    private boolean canGrantWriteAccess(Thread callingThread) {
-        if (isOnlyReader(callingThread)) return true;
-        if (hasReaders()) return false;
-        if (writingThread == null) return true;
-        if (!isWriter(callingThread)) return false;
-        return true;
-    }
-
     private int getReadAccessCount(Thread callingThread) {
         Integer accessCount = readingThreads.get(callingThread);
         if (accessCount == null) return 0;
-        return accessCount.intValue();
+        return accessCount;
     }
 
     private boolean hasReaders() {

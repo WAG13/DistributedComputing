@@ -1,8 +1,5 @@
 package knu.dc.taskA;
 
-import knu.dc.taskA.PhoneBook;
-import knu.dc.taskA.ReadWriteLock;
-
 public class InfoAdder extends Thread {
     PhoneBook phoneBook;
     ReadWriteLock rwLock;
@@ -20,8 +17,8 @@ public class InfoAdder extends Thread {
     public void run() {
         try {
             rwLock.lockWrite();
-            System.out.println("Add info" + name + " " + phone);
             phoneBook.addInfo(name, phone);
+            System.out.println("Add info: " + name + " " + phone);
             rwLock.unlockWrite();
         } catch (InterruptedException e) {
             e.printStackTrace();

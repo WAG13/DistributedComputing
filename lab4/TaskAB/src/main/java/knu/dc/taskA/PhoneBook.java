@@ -38,7 +38,6 @@ public class PhoneBook {
         try {
             writer.write("");
             for (Pair<String, String> item : phonebook) {
-
                 writer.append(item.getKey() + " " + item.getValue() + System.getProperty("line.separator"));
             }
         } catch (IOException e) {
@@ -49,21 +48,21 @@ public class PhoneBook {
     public void findByName(String name) {
         for (Pair<String, String> item : phonebook) {
             if (item.getKey().equals(name)) {
-                System.out.println("found" + item.getKey() + ". Phone: " + item.getValue());
+                System.out.println("Found: " + item.getKey() + ". Phone: " + item.getValue());
                 return;
             }
         }
-        System.out.println("not found");
+        System.out.println("Not found");
     }
 
     public void findByPhone(String phone) {
         for (Pair<String, String> item : phonebook) {
             if (item.getValue().equals(phone)) {
-                System.out.println("found" + item.getKey() + ". Phone: " + item.getValue());
+                System.out.println("Found: " + item.getKey() + ". Phone: " + item.getValue());
                 return;
             }
         }
-        System.out.println("not found");
+        System.out.println("Not found");
     }
 
     public void closeWriter() {

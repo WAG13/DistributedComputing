@@ -1,8 +1,5 @@
 package knu.dc.taskA;
 
-import knu.dc.taskA.PhoneBook;
-import knu.dc.taskA.ReadWriteLock;
-
 public class InfoFinder extends Thread {
     PhoneBook phoneBook;
     ReadWriteLock rwLock;

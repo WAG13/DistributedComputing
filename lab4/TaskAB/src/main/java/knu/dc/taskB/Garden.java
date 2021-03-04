@@ -28,6 +28,7 @@ public class Garden {
             }
             System.out.println();
         }
+        System.out.println();
     }
 
     public void printToFile() {
@@ -37,10 +38,11 @@ public class Garden {
 
             for (int i = 0; i < size; i++) {
                 for (int j = 0; j < size; j++) {
-                    writer.append(String.valueOf(garden[i][j]));
+                    writer.append(String.valueOf(garden[i][j])+" ");
                 }
                 writer.append(System.getProperty("line.separator"));
             }
+            writer.append(System.getProperty("line.separator"));
             writer.close();
         } catch (IOException e) {
 
@@ -49,16 +51,16 @@ public class Garden {
     }
 
     public void nature() {
-        int first = rand.nextInt(9);
-        int second = rand.nextInt(9);
+        int first = rand.nextInt(size-1);
+        int second = rand.nextInt(size-1);
         if (garden[first][second] > 0) {
             garden[first][second]--;
         }
     }
 
     public void gardener() {
-        int first = rand.nextInt(9);
-        int second = rand.nextInt(9);
+        int first = rand.nextInt(size-1);
+        int second = rand.nextInt(size-1);
         if (garden[first][second] < 2) {
             garden[first][second]++;
         }
