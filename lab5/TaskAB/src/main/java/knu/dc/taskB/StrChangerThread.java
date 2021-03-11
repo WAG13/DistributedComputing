@@ -5,10 +5,10 @@ import java.util.concurrent.CyclicBarrier;
 
 public class StrChangerThread extends Thread {
     private String str;
-    private CyclicBarrier cyclicBarrier;
+    private final CyclicBarrier cyclicBarrier;
+    private final Controller controller;
     private boolean isRun = true;
     private int abCount = 0;
-    private Controller controller;
 
     StrChangerThread(String str, CyclicBarrier cyclicBarrier, Controller controller){
         this.str = str;
@@ -30,22 +30,18 @@ public class StrChangerThread extends Thread {
                 case 'A' -> {
                     str = str.substring(0, randIndex) + 'C' + str.substring(randIndex + 1);
                     abCount--;
-                    break;
                 }
                 case 'B' -> {
                     str = str.substring(0, randIndex) + 'D' + str.substring(randIndex + 1);
                     abCount--;
-                    break;
                 }
                 case 'C' -> {
                     str = str.substring(0, randIndex) + 'A' + str.substring(randIndex + 1);
                     abCount++;
-                    break;
                 }
                 case 'D' -> {
                     str = str.substring(0, randIndex) + 'B' + str.substring(randIndex + 1);
                     abCount++;
-                    break;
                 }
             }
             controller.getData(abCount);

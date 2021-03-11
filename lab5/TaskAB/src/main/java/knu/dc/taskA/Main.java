@@ -15,7 +15,7 @@ public class Main {
             int[] rank = new int[threadCap];
             for(int j = 0; j < threadCap; j++){
                 rank[j] = (int)(Math.random() * 10) % 2;
-                System.out.print(rank[j] + " ");
+                System.out.print(rank[j]);
             }
             System.out.println();
             regulateThreadList.add(new RegulateThread(rank, barrier, numberThread));

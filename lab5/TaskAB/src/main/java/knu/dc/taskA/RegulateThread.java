@@ -27,7 +27,6 @@ public class RegulateThread extends Thread {
     }
     @Override
     public void run() {
-        System.out.println("Enter" + Thread.currentThread().getId());
         boolean isSwap;
         do {
             isSwap = false;
@@ -92,13 +91,9 @@ public class RegulateThread extends Thread {
         }
         synchronized (barrier) {
             for (int i = 0; i < size; i++) {
-                if (rank[i] == 1) {
-                    System.out.print(">");
-                } else {
-                    System.out.print("<");
-                }
+                System.out.print(rank[i]);
             }
-            System.out.println("|" + Thread.currentThread().getId());
+            System.out.println(" | " + Thread.currentThread().getId());
         }
     }
 }

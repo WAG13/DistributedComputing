@@ -99,7 +99,7 @@ func ArraySimulator(list *Arrays, group *sync.WaitGroup, n, arraySize int) {
 		group.Wait()
 		if checkArrayRule(list, n) {
 			stopFlag = true
-			fmt.Println("Arrays matched the rule")
+			fmt.Println("Arrays sum are equal")
 		}
 
 		printArrays(list)

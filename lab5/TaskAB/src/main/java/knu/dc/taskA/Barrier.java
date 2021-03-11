@@ -10,15 +10,6 @@ public class Barrier {
         unarrived++;
     }
 
-    public synchronized void deregister() {
-        if (arrived > 0) {
-            return;
-        }
-        threadCount--;
-        unarrived++;
-
-    }
-
     public synchronized void arriveAndWait() {
         arrived++;
         unarrived--;
