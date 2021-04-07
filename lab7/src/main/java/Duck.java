@@ -18,6 +18,7 @@ public class Duck extends GameObject {
 
 
         thread = new Thread(this);
+        thread.setDaemon(true);
         thread.start();
     }
 

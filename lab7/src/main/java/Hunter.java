@@ -14,6 +14,7 @@ public class Hunter extends GameObject {
         bullets = new ArrayList<>();
 
         thread = new Thread(this);
+        thread.setDaemon(true);
         thread.start();
     }
 

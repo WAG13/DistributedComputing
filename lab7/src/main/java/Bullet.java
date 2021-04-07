@@ -8,6 +8,7 @@ public class Bullet extends GameObject {
         getImageDimensions();
 
         thread = new Thread(this);
+        thread.setDaemon(true);
         thread.start();
     }
 
