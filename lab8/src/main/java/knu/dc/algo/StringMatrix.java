@@ -27,6 +27,7 @@ public class StringMatrix {
             startTime = System.currentTimeMillis();
         }
 
+        //Обобщенная операция передачи данных от одного процесса всем процессам (распределение данных)
         MPI.COMM_WORLD.Scatter(matrixA.matrix, 0, lineHeight * matSize, MPI.INT, bufferA, 0, lineHeight * matSize, MPI.INT, 0);
         MPI.COMM_WORLD.Scatter(matrixB.matrix, 0, lineHeight * matSize, MPI.INT, bufferB, 0, lineHeight * matSize, MPI.INT, 0);
 
