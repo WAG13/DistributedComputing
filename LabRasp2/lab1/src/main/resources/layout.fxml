@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane prefHeight="600" prefWidth="900" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.Controller">
+    <children>
+        <ToolBar GridPane.hgrow="ALWAYS">
+            <items>
+                <VBox>
+                    <children>
+                        <HBox spacing="5.0">
+                            <children>
+                                <TextField fx:id="countryId" prefWidth="100.0" promptText="id" />
+                                <TextField fx:id="countryName" prefWidth="100.0" promptText="name" />
+                                <Separator orientation="VERTICAL" />
+                                <Button fx:id="addCountry" mnemonicParsing="false" onAction="#addCountry" prefWidth="100.0" text="Add country" />
+                                <Button fx:id="updateCountry" mnemonicParsing="false" onAction="#updateCountry" prefWidth="100.0" text="Update country" />
+                                <Button fx:id="deleteCountrye" mnemonicParsing="false" onAction="#deleteCountry" prefWidth="100.0" text="Delete country" />
+                                <Button fx:id="findCountry" mnemonicParsing="false" onAction="#findCountry" prefWidth="150.0" text="Find country by id" />
+                                <Button fx:id="save" mnemonicParsing="false" onAction="#save" prefWidth="100.0" text="Save" />
+                            </children>
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                            <padding>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </padding>
+                        </HBox>
+                        <HBox spacing="5.0">
+                            <children>
+                                <TextField fx:id="cityId" prefWidth="100.0" promptText="id" />
+                                <TextField fx:id="cityName" prefWidth="100.0" promptText="name" />
+                                <TextField fx:id="cityPopulation" prefWidth="100.0" promptText="population" />
+                                <Separator orientation="VERTICAL" />
+                                <Button fx:id="addCity" mnemonicParsing="false" onAction="#addCity" prefWidth="100.0" text="Add city" />
+                                <Button fx:id="updateCity" mnemonicParsing="false" onAction="#updateCity" prefWidth="100.0" text="Update city" />
+                                <Button fx:id="deleteCity" mnemonicParsing="false" onAction="#deleteCity" prefWidth="100.0" text="Delete city" />
+                                <Button fx:id="findCity" mnemonicParsing="false" onAction="#findCity" prefWidth="150.0" text="Find city by id" />
+                            </children>
+                            <padding>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </padding>
+                        </HBox>
+                    </children>
+                    <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </padding>
+                </VBox>
+            </items>
+        </ToolBar>
+        <TreeView fx:id="treeView" prefHeight="200.0" prefWidth="200.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
+    </children>
+    <rowConstraints>
+        <RowConstraints />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+    </rowConstraints>
+    <columnConstraints>
+        <ColumnConstraints />
+    </columnConstraints>
+</GridPane>

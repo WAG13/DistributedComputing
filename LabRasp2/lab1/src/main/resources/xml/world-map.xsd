@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+		   xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="world-map" type="world-mapType"/>
+
+	<xs:complexType name="cityType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute type="xs:int" name="id" use="required"/>
+				<xs:attribute type="xs:string" name="name" use="required"/>
+				<xs:attribute type="xs:string" name="population" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="countryType">
+		<xs:sequence>
+			<xs:element type="cityType" name="city" maxOccurs="unbounded" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute type="xs:int" name="id" use="required"/>
+		<xs:attribute type="xs:string" name="name" use="required"/>
+	</xs:complexType>
+
+	<xs:complexType name="world-mapType">
+		<xs:sequence>
+			<xs:element type="countryType" name="country" maxOccurs="unbounded" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>
