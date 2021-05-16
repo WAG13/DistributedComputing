@@ -77,7 +77,7 @@ public class Application extends JFrame {
                 countryPanel.setVisible(true);
                 cityPanel.setVisible(false);
                 actionPanel.setVisible(true);
-                btnDelete.setEnabled(false);
+                btnDelete.setVisible(false);
                 pack();
             }
         });
@@ -92,7 +92,7 @@ public class Application extends JFrame {
                 countryPanel.setVisible(false);
                 cityPanel.setVisible(true);
                 actionPanel.setVisible(true);
-                btnDelete.setEnabled(false);
+                btnDelete.setVisible(false);
                 pack();
             }
         });
@@ -106,7 +106,7 @@ public class Application extends JFrame {
                 countryPanel.setVisible(false);
                 cityPanel.setVisible(false);
                 actionPanel.setVisible(true);
-                btnDelete.setEnabled(true);
+                btnDelete.setVisible(true);
                 pack();
             }
         });
