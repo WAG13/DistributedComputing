@@ -2,8 +2,6 @@ package Client;
 
 import DTO.CityDTO;
 import DTO.CountryDTO;
-import Server.CityDAO;
-import Server.CountryDAO;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,8 +32,8 @@ public class Application extends JFrame {
     private static final JButton btnDelete = new JButton("Delete");
 
     private static final Box menuPanel = Box.createVerticalBox();
-    private static final Box actionPanel = Box.createVerticalBox();
-    private static final Box comboPanel = Box.createVerticalBox();
+    private static final Box actionPanel = Box.createHorizontalBox();
+    private static final Box comboPanel = Box.createHorizontalBox();
     private static final Box cityPanel = Box.createVerticalBox();
     private static final Box countryPanel = Box.createVerticalBox();
 
@@ -197,7 +195,7 @@ public class Application extends JFrame {
     }
 
     private static void sizeAllElements() {
-        Dimension dimension = new Dimension(200, 30);
+        Dimension dimension = new Dimension(300, 40);
         btnAddCountry.setMaximumSize(dimension);
         btnAddCity.setMaximumSize(dimension);
         btnEdit.setMaximumSize(dimension);
@@ -222,10 +220,10 @@ public class Application extends JFrame {
         comboCountry.setPreferredSize(dimension);
         comboCity.setPreferredSize(dimension);
 
-        textCityCountryName.setPreferredSize(dimension);
-        textCityName.setPreferredSize(dimension);
-        textCityPopulation.setPreferredSize(dimension);
-        textCountryName.setPreferredSize(dimension);
+        textCityCountryName.setMaximumSize(dimension);
+        textCityName.setMaximumSize(dimension);
+        textCityPopulation.setMaximumSize(dimension);
+        textCountryName.setMaximumSize(dimension);
     }
 
     private static void save() {

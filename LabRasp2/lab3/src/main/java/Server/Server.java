@@ -1,5 +1,7 @@
 package Server;
 
+import DAO.CityDAO;
+import DAO.CountryDAO;
 import DTO.CityDTO;
 import DTO.CountryDTO;
 
