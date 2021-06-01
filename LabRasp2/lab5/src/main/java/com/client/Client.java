@@ -28,19 +28,13 @@ class Client {
 		ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory("tcp://localhost:61616");
 		try {
 			connection = factory.createConnection();
-			
-			// Start the connection
 	        connection.start();
 
-	        // Create a session which is non transactional
 	        session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
-	        // Create Destination queues
 	        Destination queueSend = session.createQueue("fromClient");
 	        Destination queueRec = session.createQueue("toClient");
 
-	           
-	        // Create a producer
 	        producer = session.createProducer(queueSend);
 	        producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
 	        consumer = session.createConsumer(queueRec); 

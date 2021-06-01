@@ -23,30 +23,21 @@ public class Server {
 
 	public void start() {
 		ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory("tcp://localhost:61616");
-
-        //Create connection.
         try {
 			connection = factory.createConnection();
-			// Start the connection
 	        connection.start();
 
-	        // Create a session which is non transactional
 	        session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
-	        // Create Destination queues
 	        Destination queueSend = session.createQueue("toClient");
 	        Destination queueRec = session.createQueue("fromClient");
 
-	           
-	        // Create a producer
 	        producer = session.createProducer(queueSend);
 	        producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
-	        consumer = session.createConsumer(queueRec);        
-		
+	        consumer = session.createConsumer(queueRec);
 	        while(processQuery()) {}
         
         } catch (JMSException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}    
 	}
@@ -244,7 +235,6 @@ public class Server {
 			session.close();
 			connection.close();
 		} catch (JMSException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         
