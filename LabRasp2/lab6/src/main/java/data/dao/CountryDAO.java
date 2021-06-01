@@ -1,6 +1,5 @@
 package data.dao;
 
-import data.DBConnection;
 import data.dto.CountryDTO;
 
 import java.sql.Connection;

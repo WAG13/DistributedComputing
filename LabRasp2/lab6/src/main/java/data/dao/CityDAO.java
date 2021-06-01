@@ -1,7 +1,6 @@
 package data.dao;
 
 import data.dto.CityDTO;
-import data.DBConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
